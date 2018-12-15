@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>if标签的使用</title>
+</head>
+<body>
+<p>age is {{ age }}</p>
+{% if age < 18 %}
+    <p> age < 18</p>
+{% elif age == 18 %}
+    <p> age = 18</p>
+{% elif age > 18 %}
+    <p> age > 18</p>
+{% else %}
+    <p> age not input</p>
+{% endif %}
+</body>
+</html>

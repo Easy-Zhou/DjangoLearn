@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模版变量使用详解</title>
+</head>
+<body>
+    <p>username is {{username}}</p>
+    <p>传递的参数可以是python中的各种数据类型，但是只能通过.的方式来进行获取数据，字典也只能通过.来获取，因此要避免在字典中使用字典的属性</p>
+    <p> 获取对象可以通过.对象名来获取，如v.username</p>
+    <p> 获取字典可以通过.键名来获取，如v.username</p>
+    <p> 获取列表或元祖可以通过.位置数来获取，如v.0</p>
+    <p>这次传递的是person这个类{{person.username}}</p>
+</body>
+</html>
