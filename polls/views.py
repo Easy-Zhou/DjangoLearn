@@ -38,3 +38,19 @@ def if_tag(request):
     }
 
     return render(request, 'if_tag.html', context=context)
+
+
+def for_in_tag(request):
+    context = {
+        'books': ['book1', 'book2', 'book3', 'book4'],
+    }
+    return render(request, 'for_in_tag.html', context=context)
+
+
+def get_input_test(request):
+    return render(request, 'get_input_test.html')
+
+def get_post_value(request):
+    username = request.POST['username']
+    context={'username':username}
+    return render(request,'get_input_test.html',context=context)

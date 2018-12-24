@@ -40,7 +40,7 @@ def index_view(request):
     :return:
     """
 
-    # print("index view") mn67bhuj8yg5
+    # print("index view")
 
     return render(request, 'lab6-2.html')
 
@@ -71,3 +71,4 @@ def path1(request):
 
 def path2(request):
     return HttpResponse("extra 聚合path2")
+

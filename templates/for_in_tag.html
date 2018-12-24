@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>for in 标签的使用</title>
+</head>
+<body>
+    <ul>
+        {% for book in books %}
+            <li>{{ book }}</li>
+        {% endfor %}
+
+    </ul>
+    <ol>
+        {% for book in books reversed %}  {# 将列表倒序遍历 #}
+            <li>{{ book }}</li>
+        {% endfor %}
+
+    </ol>
+</body>
+</html>

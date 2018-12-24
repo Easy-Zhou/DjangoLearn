@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>获取input中的变量</title>
+</head>
+<body>
+<form action="get_input_value" method="post">
+    <input type="text" name="username"/>
+    <input type="password" name="password"/>
+    <input type="submit" value="登陆">
+</form>
+<p>hello {{ username }}</p>
+</body>
+</html>
