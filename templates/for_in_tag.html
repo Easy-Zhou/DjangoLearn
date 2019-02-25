@@ -1,21 +1,98 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
     <meta charset="UTF-8">
     <title>for in 标签的使用</title>
+    <!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+    <link rel="stylesheet" href="/static/css/bootstrap.min.css">
+
+    <!-- 可选的 Bootstrap 主题文件（一般不用引入） -->
+    <link rel="stylesheet" href="/static/css/bootstrap-theme.min.css">
+
 </head>
 <body>
-    <ul>
-        {% for book in books %}
-            <li>{{ book }}</li>
-        {% endfor %}
+<h2> for in loop 没有 break和continue语句</h2>
+<h3>正序遍历forloop</h3>
+<ul>
+    {% for book in books %}
+        <li>{{ book }}</li>
+    {% endfor %}
 
-    </ul>
-    <ol>
-        {% for book in books reversed %}  {# 将列表倒序遍历 #}
-            <li>{{ book }}</li>
-        {% endfor %}
+</ul>
 
-    </ol>
+<h3>倒序遍历的forloop</h3>
+<ol>
+    {% for book in books reversed %}  {# 将列表倒序遍历 #}
+        <li>{{ book }}</li>
+    {% endfor %}
+
+</ol>
+
+<h3>遍历字典的key</h3>
+<ul>
+    {% for key in persons.keys %}
+        <li>{{ key }}</li>
+    {% endfor %}
+
+</ul>
+
+<h3>遍历字典的values</h3>
+<ul>
+    {% for value in persons.values %}
+        <li>{{ value }}</li>
+    {% endfor %}
+
+</ul>
+
+<h3>遍历字典的items</h3>
+<ul>
+    {% for key,value in persons.items %}
+        <li>{{ key }}:{{ value }}</li>
+    {% endfor %}
+
+</ul>
+
+<table class="table table-bordered">
+    <thead>
+    <tr>
+        <th>序号(counter0 从0开始)</th>
+        <th>序号(counter 从1开始)</th>
+        <th>反序(forloop.revcounter)</th>
+        <th>反序(forloop.revcounter0)</th>
+        <th>书名</th>
+        <th>作者</th>
+        <th>价格</th>
+    </tr>
+    </thead>
+    <tbody>
+    {% for book in bookStore %}
+        {% if forloop.first %}  {# 判断是否为forloop的第一个 #}
+            <tr style="background: #2aabd2">
+        {% elif forloop.last %} {# 判断是否为forloop的最后一个 #}
+            <tr style="background: #3e8f3e">
+        {% else  %}
+            <tr>
+        {% endif %}
+            <td>{{ forloop.counter0 }}</td>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ forloop.revcounter }}</td>
+            <td>{{ forloop.revcounter0 }}</td>
+            <td>{{ book.name }}</td>
+            <td>{{ book.author }}</td>
+            <td>{{ book.price }}</td>
+        </tr>
+    {% endfor %}
+
+    </tbody>
+</table>
+<h3>笔记区：</h3>
+<img alt="笔记截图1" src="/static/images/note1.png">
+
+<br />
+{% load static %}
+<img alt="ttt" src="{% static "polls/img/pic.png" %}">
+<img src="/static/images/pic.png" alt="test">
+<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+<script src="/static/js/bootstrap.min.js"></script>
 </body>
 </html>

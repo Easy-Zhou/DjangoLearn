@@ -13,7 +13,10 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+from . import settings # 为了加载静态文件
+from django.conf.urls.static import static # 为了加载静态文件
 from django.contrib import admin
+from django.contrib.staticfiles.urls import staticfiles_urlpatterns
 from django.urls import path, re_path, include, register_converter
 from my_app1 import views
 from . import converters
@@ -46,3 +49,7 @@ urlpatterns = [
 
     path('convert/<yyyy:year>/', views.convert_test),  # 使用自定义的格式转换器
 ]
+print(urlpatterns)
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)  # 为了加载静态文件
+# 这个加在末尾，注意，是末尾，urlpatterns 括号外
+print(urlpatterns)

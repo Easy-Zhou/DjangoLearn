@@ -43,6 +43,31 @@ def if_tag(request):
 def for_in_tag(request):
     context = {
         'books': ['book1', 'book2', 'book3', 'book4'],
+        'persons': {
+            'username': 'user01',
+            'age': 18
+        },
+        'bookStore': [
+            {
+                'name': '三国演义',
+                'author': '罗贯中',
+                'price': 25
+            },
+            {
+                'name': '红楼梦',
+                'author': '曹雪芹',
+                'price': 25
+            }, {
+                'name': '西游记',
+                'author': '吴承恩',
+                'price': 25
+            }, {
+                'name': '水浒传',
+                'author': '施耐庵',
+                'price': 25
+            }
+
+        ]
     }
     return render(request, 'for_in_tag.html', context=context)
 
@@ -50,7 +75,20 @@ def for_in_tag(request):
 def get_input_test(request):
     return render(request, 'get_input_test.html')
 
+
 def get_post_value(request):
     username = request.POST['username']
-    context={'username':username}
-    return render(request,'get_input_test.html',context=context)
+    context = {'username': username}
+    return render(request, 'get_input_test.html', context=context)
+
+
+def for_tag(request):
+    context = {
+        'books': {
+            'book_name': '三国演义',
+            'author': '罗贯中',
+            'price': 23
+        }
+
+    }
+    return None
