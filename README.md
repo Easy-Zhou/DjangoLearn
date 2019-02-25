@@ -1,4 +1,4 @@
-# 本项目为第一个django项目
+# 本项目为我的django自学项目
 - 创建项目的命令 django-admin startproject project_name
 - 创建此项目的app命令 django-admin startapp app_name
 - 初始的文件目录以及相关的用处：
