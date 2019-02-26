@@ -82,13 +82,13 @@ def get_post_value(request):
     return render(request, 'get_input_test.html', context=context)
 
 
-def for_tag(request):
-    context = {
-        'books': {
-            'book_name': '三国演义',
-            'author': '罗贯中',
-            'price': 23
-        }
-
-    }
-    return None
+# def for_tag(request):
+#     context = {
+#         'books': {
+#             'book_name': '三国演义',
+#             'author': '罗贯中',
+#             'price': 23
+#         }
+#
+#     }
+#     return None

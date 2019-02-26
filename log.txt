@@ -1,0 +1,67 @@
+commit 263f05192bf78de85059afbe673e19f94cf496ff
+Merge: 78572ff f72bc70
+Author: zhou <zhou@zhoudeMacBook-Pro.local>
+Date:   Mon Feb 25 23:18:32 2019 +0800
+
+    合并
+
+commit 78572ff982caf41036de8b7050d24a19571639fd
+Author: zhou <zhou@zhoudeMacBook-Pro.local>
+Date:   Mon Feb 25 23:14:57 2019 +0800
+
+    update pycharm config file
+
+commit f72bc7080e48fc2003bc2087b7efdfdbbfa61e52
+Merge: b67a748 f342fd1
+Author: Easy-Zhou <401700108@qq.com>
+Date:   Mon Feb 25 22:30:20 2019 +0800
+
+    Merge branch 'master' of github.com:Easy-Zhou/DjangoLearn
+
+commit b67a74831babe4f29de35872f2f5b18905bba7fe
+Author: Easy-Zhou <401700108@qq.com>
+Date:   Mon Feb 25 22:29:13 2019 +0800
+
+    更新学习进度，增加了静态文件的读取方式
+
+commit f342fd151b3804414875a22cd793202710123db7
+Author: zhou <zhou@zhoudeMacBook-Pro.local>
+Date:   Wed Feb 20 22:55:55 2019 +0800
+
+    test
+
+commit 8949bea4de289389322c85c1aba00b759adf7658
+Author: Easy-Zhou <36226819+Easy-Zhou@users.noreply.github.com>
+Date:   Sun Jan 13 14:35:00 2019 +0800
+
+    Update README.md
+
+commit c29cb96c517b573b9c163c7005c748b5ea2176d3
+Author: Easy-Zhou <401700108@qq.com>
+Date:   Mon Dec 24 19:37:06 2018 +0800
+
+    del test file and upload config file
+
+commit 846f5160766272a0bdbe9035eb30f49b392ca767
+Author: Easy-Zhou <401700108@qq.com>
+Date:   Mon Dec 24 19:32:32 2018 +0800
+
+    test
+
+commit 8b736ea6b923d25a78173a9bd6c505416bdfdd20
+Author: Easy-Zhou <401700108@qq.com>
+Date:   Mon Dec 24 19:28:50 2018 +0800
+
+    2018.12.24通过注释了setting中的csrf，以及添加了使用post传递表单中的值的方法
+
+commit 3ae4d43020ec69e24a61874bcd262e68b3c048ab
+Author: Easy-Zhou <401700108@qq.com>
+Date:   Sun Dec 16 00:24:05 2018 +0800
+
+    Django if tag
+
+commit 02a6a5c858278f6a684d500b600f87da320a12a9
+Author: zhou <zhou@zhoudeMacBook-Air.local>
+Date:   Sun Dec 16 00:13:24 2018 +0800
+
+    Django 学习至if标签
