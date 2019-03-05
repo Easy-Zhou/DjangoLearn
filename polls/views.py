@@ -1,4 +1,4 @@
-from django.shortcuts import render, HttpResponse
+from django.shortcuts import render, HttpResponse, redirect
 
 
 # Create your views here.
@@ -79,16 +79,25 @@ def get_input_test(request):
 def get_post_value(request):
     username = request.POST['username']
     context = {'username': username}
-    return render(request, 'get_input_test.html', context=context)
+    #  return render(request, 'get_input_test.html', locals())
+    # locals() 可以在前段直接使用变量的名称不用再context中取名,传的变量太多可能会降低效率
+    return render(request, 'get_input_test.html', context=context)  # locals() 可以在前段直接使用变量的名称不用再context中取名
 
 
-# def for_tag(request):
-#     context = {
-#         'books': {
-#             'book_name': '三国演义',
-#             'author': '罗贯中',
-#             'price': 23
-#         }
-#
-#     }
-#     return None
+def study_redirect(request):
+    """
+    使用redirect进行重定向
+    :param request:
+    :return:
+    """
+    context = {
+        'books': {
+            'book_name': '三国演义',
+            'author': '罗贯中',
+            'price': 23
+        }
+
+    }
+
+    # return redirect("http://www.baidu.com")
+    return redirect("/for_in_tag")

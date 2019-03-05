@@ -8,5 +8,5 @@ urlpatterns = [
     path('for_in_tag',views.for_in_tag),
     path('get_input_test',views.get_input_test),
     path('get_input_value',views.get_post_value),
-    # path('for_tag',views.for_tag),
+    path('study_redirect',views.study_redirect),
 ]
