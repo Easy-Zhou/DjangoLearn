@@ -1,6 +1,10 @@
 # 本项目为我的django自学项目
 - 创建项目的命令 django-admin startproject project_name
 - 创建此项目的app命令 django-admin startapp app_name
+- 生成数据库命令:
+    - python manage.py makemigrations
+    - python manage.py migrate 
+- 创建超级用户名利: python manage.py createsuperuser 
 - 初始的文件目录以及相关的用处：
 ```
 my_test_web 
