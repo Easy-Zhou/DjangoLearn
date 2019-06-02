@@ -36,13 +36,18 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'polls.apps.PollsConfig',
+    'stuDatabase',  # 在同步的时候需要使用到 表结构发生变化会进行自动同步
+    'l_session',
+    'l_auth',
+    'blog',
+    'uploadFile',
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    #'django.middleware.csrf.CsrfViewMiddleware',
+    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
@@ -73,8 +78,12 @@ WSGI_APPLICATION = 'Django1.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'study_django',  # 数据库名字(需要先创建)
+        'USER': 'root',  # 登录用户名
+        'PASSWORD': 'zhou123',  # 密码
+        'HOST': 'localhost',  # 数据库IP地址,留空默认为localhost
+        'PORT': 3306,  # 端口
     }
 }
 
@@ -123,10 +132,14 @@ USE_TZ = True
 STATIC_URL = '/static/'
 # HERE = os.path.dirname(os.path.abspath(__file__))
 # HERE = os.path.join(HERE, '../')
-STATICFILES_DIRS = (
-    # Put strings here, like "/home/html/static" or "C:/www/django/static".
-    # Always use forward slashes, even on Windows.
-    # Don't forget to use absolute paths, not relative paths.
-    os.path.join(BASE_DIR, 'static/'),
-)
+# 取消一下注释则可以在整个项目中使用static
+# STATICFILES_DIRS = (
+#     # Put strings here, like "/home/html/static" or "C:/www/django/static".
+#     # Always use forward slashes, even on Windows.
+#     # Don't forget to use absolute paths, not relative paths.
+#     os.path.join(BASE_DIR, 'static/'),
+# )
+AUTH_USER_MODEL='blog.UserInfo' # 用来配置auth_user继承
 
+MEDIA_ROOT = os.path.join(BASE_DIR,'blog','media')  # 指定media路径
+MEDIA_URL = '/media/'

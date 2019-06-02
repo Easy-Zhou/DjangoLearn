@@ -14,6 +14,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from . import settings # 为了加载静态文件
+from django.views.static import serve
 from django.conf.urls.static import static # 为了加载静态文件
 from django.contrib import admin
 from django.contrib.staticfiles.urls import staticfiles_urlpatterns
@@ -31,6 +32,11 @@ extra_patterns = [
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('stuDatabase/', include('stuDatabase.urls')),
+    path('l_session/',include('l_session.urls')),
+    path('auth/',include('l_auth.urls')),
+    path('uploadFile/',include('uploadFile.urls')),
+    path('blog/',include('blog.urls')),
     path('polls/', include('polls.urls')),
     # 将匹配到的polls/阶段，并将polls/之后的字符串发送到polls app中的urls.py进行路由匹配 这就支持了
     # 即插即用。因为投票应用有它自己的 URLconf( polls/urls.py )，他们能够被放在 "/polls/" ， "/fun_polls/" ，"/content/polls/"，
@@ -48,8 +54,11 @@ urlpatterns = [
     # re_path(r'^articles/(?P<year>[0-9]{4})/(?P<month>[0-9]{2})/(?P<slug>[\w-]+)/$',views.article_archive3),  # 匹配任意字符
 
     path('convert/<yyyy:year>/', views.convert_test),  # 使用自定义的格式转换器
+    re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),
+    # 配置media路径访问接口
 ]
-print(urlpatterns)
-urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)  # 为了加载静态文件
+# print(urlpatterns)
+#urlpatterns += static(settings.STATIC_URL, document_root=settings.STATICFILES_DIRS)  # 为了加载静态文件
+# urlpatterns += static(settings.STATIC_URL, document_root='/blog/static')  # 为了加载静态文件
 # 这个加在末尾，注意，是末尾，urlpatterns 括号外
-print(urlpatterns)
+# print(urlpatterns)

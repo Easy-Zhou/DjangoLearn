@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>注册</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="/static/bs/css/bootstrap.css">
+    <script src="/static/js/jquery-3.2.1.min.js"></script>
+    <style type="text/css">
+        #avatar {
+            display: none;
+        }
+
+        .avatar_img {
+            width: 60px;
+            height: 60px;
+            margin-left: 15px;
+        }
+        .login_btn{
+            margin-top: 15px;
+        }
+
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form action="">
+                {# 方式1 #}
+                {# {{ form.as_p }}  <p><label for="id_username">Username:</label> <input type="text" name="username" maxlength="8" required="" id="id_username"></p> #}
+                {#                方式2#}
+                {#                <div class="form-group">#}
+                {#                    <label for=""> {{ form.username.label }} </label>#}
+                {#                    {{ form.username }}#}
+                {#                </div>#}
+                {#                方式3 采用for 循环#}
+                {% for field in form %}
+                    <div class="form-group">
+                        <label for="">{{ field.label }}</label>
+                        {{ field }}<span class="errors pull-right"></span>
+                    </div>
+                {% endfor %}
+                <div class="form-group">
+                    <label for="avatar">头像<img class="avatar_img" src="/static/img/default.png" alt="default"></label>
+                    <input type="file" id="avatar">
+                </div>
+                <input type="button" class="btn btn-default register_btn pull-right col-md-12" value="注册">
+                <input type="button" class="btn btn-default login_btn pull-right col-md-12" value="已有账号？赶快去登录吧">
+            </form>
+        </div>
+    </div>
+</div>
+{% csrf_token %}
+<script>
+
+    $("#avatar").change(function () {
+        var choose_file = $(this)[0].files[0];
+        {# 获取到文件对象 #}
+        var reader = new FileReader();
+        reader.readAsDataURL(choose_file);
+
+        reader.onload = function () {
+            $(".avatar_img").attr("src", reader.result)
+        }
+
+    });
+
+
+    $(".register_btn").click(function () {
+
+        var formData = new FormData();
+        formData.append("username", $("#id_username").val());
+        formData.append("password", $("#id_password").val());
+        formData.append("repeat_password", $("#id_repeat_password").val());
+        formData.append("email", $("#id_email").val());
+        formData.append("avatar", $("#avatar")[0].files[0]);
+        formData.append("csrfmiddlewaretoken", $("[name='csrfmiddlewaretoken']").val());
+
+        $.ajax({
+            url: "",
+            type: "post",
+            processData: false,
+            contentType: false,
+            data: formData,
+            success: function (data) {
+                if (data.username) { // 注册成功
+                    location.href = "/blog/login";
+                } else {// 注册失败
+                    console.log(data.error_dict);
+                    // q清空错误信息
+                    $("form span").html("");
+                    $("form .form-group").removeClass("has-error");
+                    // 加载错误信息
+                    $.each(data.error_dict, function (field, error_list) {
+                        if (field == "__all__") {  // 全局钩子使用的时候错误信息的键为__all__
+                            $("#id_repeat_password").next().html(error_list[0]).css("color", 'red');
+                            $("#id_repeat_password").parent().addClass("has-error")  // 使用bootstrap将框变红
+                        }
+                        $("#id_" + field).next().html(error_list[0]).css("color", 'red');
+                        $("#id_" + field).parent().addClass("has-error")
+                    });
+                }
+
+            },
+        });
+
+    });
+
+    $("#valid_img").click(function () {
+        $(this)[0].src = "/blog/get_valid_img"
+    });
+    $(".login_btn").click(function () {
+        location.href="/blog/login"
+    });
+</script>
+</body>
+</html>

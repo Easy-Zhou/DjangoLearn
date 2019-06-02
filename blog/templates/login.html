@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录页</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <link rel="stylesheet" href="/static/bs/css/bootstrap.css">
+    <script src="/static/js/jquery-3.2.1.min.js"></script>
+    <style type="text/css">
+        .login_btn{
+            margin-bottom: 15px;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 col-md-offset-3">
+            <form action="">
+                <div class="form-group">
+                    <label for="username">用户名：</label>
+                    <input type="text" class="form-control" id="username" placeholder="Username">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">密码：</label>
+                    <input type="password" class="form-control" id="password" placeholder="Password">
+                </div>
+                <div class="form-group">
+                    <label for="code">验证码：<span class="errors"></span></label>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" id="valid_code" placeholder="验证码">
+                        </div>
+                        <div class="col-md-6">
+                            <img width="100%" id="valid_img" height="34" src="/blog/get_valid_img" alt="验证码">
+                        </div>
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <input type="button" class="btn btn-default login_btn col-md-12" value="登录">
+                </div>
+                <div class="form-group">
+                    <input type="button" class="btn btn-default reg_btn col-md-12" value="注册">
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+{% csrf_token %}
+<script>
+    $(".login_btn").on("click", function () {
+        $.ajax({
+            url: "",
+            type: "post",
+            data: {
+                csrfmiddlewaretoken: $("[name='csrfmiddlewaretoken']").val(),
+                username: $("#username").val(),
+                password: $("#password").val(),
+                valid_code: $("#valid_code").val(),
+            },
+            success: function (data) {
+                console.log(data);
+                if (data.state) {
+                    location.href = "/blog/index"
+                } else {
+                    $(".errors").text(data.msg)
+                }
+            }
+        })
+    });
+
+    $("#valid_img").click(function () {
+        $(this)[0].src += "?"
+    });
+    $(".reg_btn").click(function () {
+        location.href="/blog/register"
+    });
+</script>
+</body>
+</html>
